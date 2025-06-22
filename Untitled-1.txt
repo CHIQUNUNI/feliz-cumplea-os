@@ -1,0 +1,117 @@
+<!-- Puedes guardar este archivo como "carta-cumpleanos.html" y abrirlo en tu navegador -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>¡Feliz Cumpleaños!</title>
+  <style>
+    body {
+      background: #ffe6f2;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    .carta {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px #f9b6d2;
+      display: inline-block;
+      margin-top: 50px;
+      padding: 40px 30px;
+      animation: aparecer 2s ease;
+    }
+    @keyframes aparecer {
+      from { opacity: 0; transform: scale(0.8);}
+      to { opacity: 1; transform: scale(1);}
+    }
+    .kitty {
+      width: 180px;
+      animation: saltar 1.5s infinite alternate;
+    }
+    @keyframes saltar {
+      from { transform: translateY(0);}
+      to { transform: translateY(-20px);}
+    }
+    .mensaje {
+      font-size: 1.5em;
+      color: #d63384;
+      margin: 20px 0;
+      animation: brillar 2s infinite alternate;
+    }
+    @keyframes brillar {
+      from { text-shadow: 0 0 10px #fff;}
+      to { text-shadow: 0 0 30px #ffb3d9;}
+    }
+    .confeti {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: 10;
+    }
+  </style>
+</head>
+<body>
+  <canvas class="confeti"></canvas>
+  <div class="carta">
+    <img class="kitty" src="https://upload.wikimedia.org/wikipedia/en/0/05/Hello_Kitty_character_portrait.png" alt="Hello Kitty">
+    <div class="mensaje">
+      ¡Feliz Cumpleaños!<br>
+      Que tu día esté lleno de alegría, amor y mucha diversión.<br>
+      🎂🎉💖<br>
+      ¡Te desea Hello Kitty!
+    </div>
+  </div>
+  <script>
+    // Animación de confeti
+    const canvas = document.querySelector('.confeti');
+    const ctx = canvas.getContext('2d');
+    let W = window.innerWidth, H = window.innerHeight;
+    canvas.width = W; canvas.height = H;
+
+    let confetis = [];
+    for(let i=0; i<100; i++){
+      confetis.push({
+        x: Math.random()*W,
+        y: Math.random()*H,
+        r: Math.random()*8+2,
+        d: Math.random()*100,
+        color: `hsl(${Math.random()*360},80%,70%)`,
+        tilt: Math.random()*10-10
+      });
+    }
+
+    function drawConfeti(){
+      ctx.clearRect(0,0,W,H);
+      for(let i=0; i<confetis.length; i++){
+        let c = confetis[i];
+        ctx.beginPath();
+        ctx.arc(c.x, c.y, c.r, 0, Math.PI*2, false);
+        ctx.fillStyle = c.color;
+        ctx.fill();
+      }
+      updateConfeti();
+    }
+
+    let angle = 0;
+    function updateConfeti(){
+      angle += 0.01;
+      for(let i=0; i<confetis.length; i++){
+        let c = confetis[i];
+        c.y += Math.cos(angle + c.d) + 1 + c.r/2;
+        c.x += Math.sin(angle) * 2;
+        if(c.y > H){
+          c.y = -10;
+          c.x = Math.random()*W;
+        }
+      }
+    }
+
+    setInterval(drawConfeti, 20);
+    window.addEventListener('resize', ()=>{
+      W = window.innerWidth; H = window.innerHeight;
+      canvas.width = W; canvas.height = H;
+    });
+  </script>
+</body>
+</html>
