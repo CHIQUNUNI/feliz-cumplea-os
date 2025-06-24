@@ -1,9 +1,9 @@
-<!-- Puedes guardar este archivo como "carta-cumpleanos.html" y abrirlo en tu navegador -->
+ya<!-- Puedes guardar este archivo como "carta-cumpleanos.html" y abrirlo en tu navegador -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>¡Feliz Cumpleaños!</title>
+  <title>¡Feliz Cumpleaños Fani!</title>
   <style>
     body {
       background: #ffe6f2;
@@ -57,7 +57,6 @@
     <img class="kitty" src="https://upload.wikimedia.org/wikipedia/en/0/05/Hello_Kitty_character_portrait.png" alt="Hello Kitty">
     <div class="mensaje">
       ¡Feliz Cumpleaños!<br>
-      Que tu día esté lleno de alegría, amor y mucha diversión.<br>
       🎂🎉💖<br>
       ¡Te desea Hello Kitty!
     </div>
